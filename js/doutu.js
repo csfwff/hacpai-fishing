@@ -80,17 +80,20 @@ function search() {
     success: function(data) {
       $('#result').empty()
       if (data.status == 1) {
-        data.data.list.forEach((e) => {
-          let imgString = '<div class="doutuItem"><img src=' + e.image_url + ' referrerpolicy="no-referrer" class="doutuImg" /></div>'
-          let item = $(imgString)
-          item.click(function() {
-            addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
-            showPop(false)
+        if(data.data.list.length==0){
+          let noImg = $("<div>找不到了啊</div>")
+          noImg.appendTo($('#result'))
+        }else {
+          data.data.list.forEach((e) => {
+            let imgString = '<div class="doutuItem"><img src=' + e.image_url + ' referrerpolicy="no-referrer" class="doutuImg" /></div>'
+            let item = $(imgString)
+            item.click(function() {
+              addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
+              showPop(false)
+            })
+            item.appendTo($('#result'))
           })
-
-          item.appendTo($('#result'))
-
-        })
+        }
       } else {
         alert("我能怎么办，我也找不到啊！！")
       }
