@@ -1,19 +1,19 @@
-#doutuBtn{
+#doutuBtn {
   margin-right: 10px;
 }
 
-#doutuInputView{
+#doutuInputView {
   height: 34px;
 }
 
-#doutuInput{
+#doutuInput {
   margin-right: 10px;
   margin-top: 5.5px;
   margin-left: 5px;
   margin-bottom: 5.5px;
 }
 
-#result{
+#result {
   height: 300px;
   width: 600px;
   display: flex;
@@ -23,28 +23,25 @@
   flex-wrap: wrap;
 }
 
-.item {
-        width: 100px;
-        padding: 5px;
-        border: 1px solid #ddd;
+.doutuItem {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ddd;
 }
 
-.doutuImg{
+.doutuImg {
   display: block;
-       width: 100%;
+  width: 100%;
 }
 
-
-#pageDiv{
+#pageDiv {
   margin-left: 5px
 }
 
-#num{
+#num {
   margin-left: 10px;
   margin-right: 10px;
 }
-
-
 
 .none {
   display: none;
