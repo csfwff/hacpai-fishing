@@ -1,0 +1,187 @@
+#doutuBtn{
+  margin-right: 10px;
+}
+
+#doutuInputView{
+  height: 34px;
+}
+
+#doutuInput{
+  margin-right: 10px;
+  margin-top: 5.5px;
+  margin-left: 5px;
+  margin-bottom: 5.5px;
+}
+
+#result{
+  height: 300px;
+  width: 600px;
+  display: flex;
+  margin: 5px;
+  border: 1px solid #4cf758;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
+.item {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ddd;
+}
+
+.doutuImg{
+  display: block;
+       width: 100%;
+}
+
+
+#pageDiv{
+  margin-left: 5px
+}
+
+#num{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+.none {
+  display: none;
+}
+
+.popBg {
+  position: fixed;
+  background: #000000;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
+.popBg.popHide[opacity="0"] {
+  display: none;
+}
+
+.popBg.popShow {
+  opacity: 0.5;
+  -webkit-animation-name: popBgShow;
+  -moz-animation-name: popBgShow;
+  -o-animation-name: popBgShow;
+  animation-name: popBgShow;
+}
+
+.popBg.popHide {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-animation-name: popBgHide;
+  -moz-animation-name: popBgHide;
+  -o-animation-name: popBgHide;
+  animation-name: popBgHide;
+}
+
+.doutuView {
+  position: fixed;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px #4cf758;
+  z-index: 2000;
+  left: 50%;
+  -webkit-animation-duration: 500ms;
+  -moz-animation-duration: 500ms;
+  -o-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-perspective: 1300px;
+  -moz-perspective: 1300px;
+  perspective: 1300px;
+}
+
+.doutuView.popShow {
+  top: 50%;
+  opacity: 1;
+  -webkit-animation-name: popShow;
+  -moz-animation-name: popShow;
+  -o-animation-name: popShow;
+  animation-name: popShow;
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.doutuView.popHide {
+  top: 100%;
+  opacity: 0.3;
+  -webkit-animation-duration: 500ms;
+  -moz-animation-duration: 500ms;
+  -o-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-animation-name: popHide;
+  -moz-animation-name: popHide;
+  -o-animation-name: popHide;
+  animation-name: popHide;
+  -webkit-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+@keyframes popBgShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes popBgHide {
+  0% {
+    opacity: 0.5;
+    visibility: visible;
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@keyframes popShow {
+  0% {
+    top: 100%;
+    opacity: 0.3;
+  }
+
+  100% {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes popHide {
+  0% {
+    top: 50%;
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0.3;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+  }
+}
