@@ -1,4 +1,4 @@
-# hacpai-finishing
+# hacpai-fishing
 黑客派聊天室摸鱼🐟
 
 食用方法：
