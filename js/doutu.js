@@ -74,16 +74,19 @@ function search() {
     alert("你不给关键词我怎么搜？？？")
     return
   }
+  sedRequest()
+  return
+  //使用background请求，下面的没用了
   $.ajax({
     url: 'https://www.doutula.com/api/search?keyword=' + doutuKeyword + '&mime=0&page=' + doutuPage,
     dataType: 'json',
     success: function(data) {
       $('#result').empty()
       if (data.status == 1) {
-        if(data.data.list.length==0){
+        if (data.data.list.length == 0) {
           let noImg = $("<div>找不到了啊</div>")
           noImg.appendTo($('#result'))
-        }else {
+        } else {
           data.data.list.forEach((e) => {
             let imgString = '<div class="doutuItem"><img src=' + e.image_url + ' referrerpolicy="no-referrer" class="doutuImg" /></div>'
             let item = $(imgString)
@@ -105,4 +108,36 @@ function search() {
 function addToArea(content) {
   let area = $(".vditor-textarea")[0]
   area.value = area.value + content
+}
+
+
+
+function sedRequest(){
+  chrome.runtime.sendMessage(
+    {contentScriptQuery:"getImg",doutuKeyword:doutuKeyword,doutuPage:doutuPage},
+    data =>{
+      console.log(data);
+      data = JSON.parse(data)
+      $('#result').empty()
+      if (data.status == 1) {
+        if (data.data.list.length == 0) {
+          let noImg = $("<div>找不到了啊</div>")
+          noImg.appendTo($('#result'))
+        } else {
+          data.data.list.forEach((e) => {
+            let imgString = '<div class="doutuItem"><img src=' + e.image_url + ' referrerpolicy="no-referrer" class="doutuImg" /></div>'
+            let item = $(imgString)
+            item.click(function() {
+              addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
+              showPop(false)
+            })
+            item.appendTo($('#result'))
+          })
+        }
+      } else {
+        alert("我能怎么办，我也找不到啊！！")
+      }
+      $('#num')[0].innerHTML = doutuPage
+    }
+  )
 }
