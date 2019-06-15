@@ -88,7 +88,7 @@ function search() {
           noImg.appendTo($('#result'))
         } else {
           data.data.list.forEach((e) => {
-            let imgString = '<div class="doutuItem"><img src=' + e.image_url + ' referrerpolicy="no-referrer" class="doutuImg" /></div>'
+            let imgString = '<div class="doutuItem"><img referrerpolicy="no-referrer" src=' + e.image_url + '  class="doutuImg" /></div>'
             let item = $(imgString)
             item.click(function() {
               addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
@@ -125,7 +125,7 @@ function sedRequest(){
           noImg.appendTo($('#result'))
         } else {
           data.data.list.forEach((e) => {
-            let imgString = '<div class="doutuItem"><img src=' + e.image_url + ' referrerpolicy="no-referrer" class="doutuImg" /></div>'
+            let imgString = '<div class="doutuItem"><img referrerpolicy="no-referrer" src=' + e.image_url + '  class="doutuImg" /></div>'
             let item = $(imgString)
             item.click(function() {
               addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
