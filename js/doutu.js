@@ -116,7 +116,7 @@ function sedRequest(){
   chrome.runtime.sendMessage(
     {contentScriptQuery:"getImg",doutuKeyword:doutuKeyword,doutuPage:doutuPage},
     data =>{
-      console.log(data);
+      //console.log(data);
       data = JSON.parse(data)
       $('#result').empty()
       if (data.status == 1) {
@@ -125,8 +125,27 @@ function sedRequest(){
           noImg.appendTo($('#result'))
         } else {
           data.data.list.forEach((e) => {
-            let imgString = '<div class="doutuItem"><img referrerpolicy="no-referrer" src=' + e.image_url + '  class="doutuImg" /></div>'
+
+            //let imgContent = '<img referrerpolicy="no-referrer"  class="doutuImg"  />'
+            //let img = $(imgContent)
+          
+            let imgString = '<div class="doutuItem"></div>'
             let item = $(imgString)
+
+            let sizeString = '<div>111</div>'
+            let size = $(sizeString)
+            
+           var img = new Image();
+           img.referrerpolicy = "no-referrer"
+           img.className="doutuImg"
+
+            img.onload = function(){
+              setSize(img,size)
+            }
+            img.src = e.image_url
+
+            $(img).appendTo(item)
+            size.appendTo(item)
             item.click(function() {
               addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
               showPop(false)
@@ -140,4 +159,12 @@ function sedRequest(){
       $('#num')[0].innerHTML = doutuPage
     }
   )
+}
+
+
+function setSize(img,content){
+  console.log(content);
+  
+  content[0].innerHTML = img.naturalWidth +"x"+img.naturalHeight
+
 }
