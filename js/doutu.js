@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   addDoutuBtn()
 })
 
@@ -8,7 +8,7 @@ var doutuPage = 1
 function addDoutuBtn() {
 
   let btn = $('<button class="green fn__right" id="doutuBtn">斗图</button>')
-  $(btn).click(function() {
+  $(btn).click(function () {
     showPop(true)
   })
   $(btn).appendTo($('.fn__clear'))
@@ -18,7 +18,7 @@ function addDoutuBtn() {
 function addDoutuView() {
   let popBg = $('<div id="popBg" class="none"/>')
   $(popBg).appendTo($('body'))
-  $(popBg).click(function() {
+  $(popBg).click(function () {
     showPop(false)
   })
 
@@ -37,12 +37,12 @@ function addDoutuView() {
   pageView.append(preBtn, numSpan, nextBtn)
   pageView.appendTo(popView)
 
-  $('#searchBtn').click(function() {
+  $('#searchBtn').click(function () {
     doutuKeyword = $('#doutuInput')[0].value
     doutuPage = 1
     search()
   })
-  $('#preBtn').click(function() {
+  $('#preBtn').click(function () {
     doutuPage--
     if (doutuPage < 1) {
       doutuPage = 1
@@ -51,7 +51,7 @@ function addDoutuView() {
     }
     search()
   })
-  $('#nextBtn').click(function() {
+  $('#nextBtn').click(function () {
     doutuPage++
     search()
   })
@@ -62,7 +62,7 @@ function showPop(type) {
   let animationClass = type
     ? "popShow"
     : "popHide";
-  let animation = function() {
+  let animation = function () {
     $('#popBg').attr('class', 'popBg ' + animationClass);
     $('#doutuView').attr('class', 'doutuView ' + animationClass);
   }
@@ -80,7 +80,7 @@ function search() {
   $.ajax({
     url: 'https://www.doutula.com/api/search?keyword=' + doutuKeyword + '&mime=0&page=' + doutuPage,
     dataType: 'json',
-    success: function(data) {
+    success: function (data) {
       $('#result').empty()
       if (data.status == 1) {
         if (data.data.list.length == 0) {
@@ -90,7 +90,7 @@ function search() {
           data.data.list.forEach((e) => {
             let imgString = '<div class="doutuItem"><img referrerpolicy="no-referrer" src=' + e.image_url + '  class="doutuImg" /></div>'
             let item = $(imgString)
-            item.click(function() {
+            item.click(function () {
               addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
               showPop(false)
             })
@@ -112,10 +112,10 @@ function addToArea(content) {
 
 
 
-function sedRequest(){
+function sedRequest() {
   chrome.runtime.sendMessage(
-    {contentScriptQuery:"getImg",doutuKeyword:doutuKeyword,doutuPage:doutuPage},
-    data =>{
+    { contentScriptQuery: "getImg", doutuKeyword: doutuKeyword, doutuPage: doutuPage },
+    data => {
       //console.log(data);
       data = JSON.parse(data)
       $('#result').empty()
@@ -126,27 +126,23 @@ function sedRequest(){
         } else {
           data.data.list.forEach((e) => {
 
-            //let imgContent = '<img referrerpolicy="no-referrer"  class="doutuImg"  />'
-            //let img = $(imgContent)
-          
+            let imgContent = '<img referrerpolicy="no-referrer"  class="doutuImg"  />'
+            let img = $(imgContent)
+
             let imgString = '<div class="doutuItem"></div>'
             let item = $(imgString)
 
-            let sizeString = '<div>111</div>'
+            let sizeString = '<div></div>'
             let size = $(sizeString)
-            
-           var img = new Image();
-           img.referrerpolicy = "no-referrer"
-           img.className="doutuImg"
 
-            img.onload = function(){
-              setSize(img,size)
+            img[0].onload = function () {
+              setSize(img, size)
             }
-            img.src = e.image_url
+            img[0].src = e.image_url
 
-            $(img).appendTo(item)
+            img.appendTo(item)
             size.appendTo(item)
-            item.click(function() {
+            item.click(function () {
               addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
               showPop(false)
             })
@@ -162,9 +158,8 @@ function sedRequest(){
 }
 
 
-function setSize(img,content){
-  console.log(content);
-  
-  content[0].innerHTML = img.naturalWidth +"x"+img.naturalHeight
+function setSize(img, content) {
+
+  content[0].innerHTML = img[0].naturalWidth + "x" + img[0].naturalHeight
 
 }
