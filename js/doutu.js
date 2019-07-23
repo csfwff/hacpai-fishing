@@ -143,7 +143,8 @@ function sedRequest() {
             img.appendTo(item)
             size.appendTo(item)
             item.click(function () {
-              addToArea("![" + doutuKeyword + "](" + e.image_url + ")")
+              
+             addToArea("![" + doutuKeyword + "](https://www.stackoverflow.wiki/getImage.do?src=" + e.image_url + ")")
               showPop(false)
             })
             item.appendTo($('#result'))
