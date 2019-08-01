@@ -78,7 +78,7 @@ function search() {
   return
   //使用background请求，下面的没用了
   $.ajax({
-    url: 'https://www.doutula.com/api/search?keyword=' + doutuKeyword + '&mime=0&page=' + doutuPage,
+    url: 'https://www.doutula.com/api/search?keyword=' + doutuKeyword + '&page=' + doutuPage,
     dataType: 'json',
     success: function (data) {
       $('#result').empty()
@@ -107,7 +107,8 @@ function search() {
 
 function addToArea(content) {
   let area = $(".vditor-textarea")[0]
-  area.value = area.value + content
+  //area.value = area.value + content
+  area.innerHTML = area.innerHTML + content
 }
 
 
