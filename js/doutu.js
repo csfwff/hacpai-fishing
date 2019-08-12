@@ -107,8 +107,8 @@ function search() {
 
 function addToArea(content) {
   let area = $(".vditor-textarea")[0]
-  //area.value = area.value + content
-  area.innerHTML = area.innerHTML + content
+  area.value = area.value + content
+  //area.innerHTML = area.innerHTML + content
 }
 
 
