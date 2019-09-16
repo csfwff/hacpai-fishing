@@ -32,7 +32,7 @@ function addDoutuView() {
 
   let pageView = $('<div id="pageDiv"></div>')
   let preBtn = $('<button id="preBtn" class="green">上一页</button>')
-  let numSpan = $('<span id="num">1</span>')
+  let numSpan = $('<span id="num">0</span>')
   let nextBtn = $('<button id="nextBtn" class="green">下一页</button>')
   pageView.append(preBtn, numSpan, nextBtn)
   pageView.appendTo(popView)
