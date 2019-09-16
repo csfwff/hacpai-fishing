@@ -3,7 +3,7 @@ $(function () {
 })
 
 var doutuKeyword = ""
-var doutuPage = 1
+var doutuPage = 0
 
 function addDoutuBtn() {
 
@@ -39,14 +39,14 @@ function addDoutuView() {
 
   $('#searchBtn').click(function () {
     doutuKeyword = $('#doutuInput')[0].value
-    doutuPage = 1
+    doutuPage = 0
     search()
   })
   $('#preBtn').click(function () {
     doutuPage--
-    if (doutuPage < 1) {
-      doutuPage = 1
-      alert("都第1页了还往前翻！！")
+    if (doutuPage < 0) {
+      doutuPage = 0
+      alert("都第0页了还往前翻！！")
       return
     }
     search()
@@ -74,7 +74,8 @@ function search() {
     alert("你不给关键词我怎么搜？？？")
     return
   }
-  sedRequest()
+  //sedRequest()
+  sedRequestSougou()
   return
   //使用background请求，下面的没用了
   $.ajax({
@@ -158,6 +159,55 @@ function sedRequest() {
     }
   )
 }
+
+function sedRequestSougou() {
+  chrome.runtime.sendMessage(
+    { contentScriptQuery: "getImg", doutuKeyword: doutuKeyword, doutuPage: doutuPage },
+    data => {
+      //console.log(data);
+      data = JSON.parse(data)
+      $('#result').empty()
+     // if (data.status == 1) {
+        if (data.items.length == 0) {
+          let noImg = $("<div>找不到了啊</div>")
+          noImg.appendTo($('#result'))
+        } else {
+          data.items.forEach((e) => {
+
+            let imgContent = '<img referrerpolicy="no-referrer"  class="doutuImg"  />'
+            let img = $(imgContent)
+
+            let imgString = '<div class="doutuItem"></div>'
+            let item = $(imgString)
+
+            let sizeString = '<div></div>'
+            let size = $(sizeString)
+
+            img[0].onload = function () {
+              setSize(img, size)
+            }
+            img[0].src = e.oriPicUrl
+
+            img.appendTo(item)
+            size.appendTo(item)
+            item.click(function () {
+              
+             addToArea("![" + doutuKeyword + "](" + e.oriPicUrl + ")")
+              showPop(false)
+            })
+            item.appendTo($('#result'))
+          })
+        }
+      // } else {
+      //   alert("我能怎么办，我也找不到啊！！")
+      // }
+      $('#num')[0].innerHTML = doutuPage
+    }
+  )
+}
+
+
+
 
 
 function setSize(img, content) {
