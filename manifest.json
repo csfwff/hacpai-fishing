@@ -1,6 +1,6 @@
 {
   "name": "黑客派聊天室摸鱼",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "content_scripts": [{
     "js": ["js/jquery-3.3.1.min.js", "js/ChatNum.js", "js/doutu.js"],
     "css": ["css/doutu.css"],
@@ -10,9 +10,6 @@
     "scripts":["js/background.js"]
   },
   "manifest_version": 2,
-  "permissions": [
-    "https://www.doutula.com/api/search"
-  ],
   "icons": {
     "48": "favicon.png"
   }
