@@ -119,7 +119,7 @@ function sedRequest() {
     { contentScriptQuery: "getImg", doutuKeyword: doutuKeyword, doutuPage: doutuPage },
     data => {
       //console.log(data);
-      data = JSON.parse(data)
+      //data = JSON.parse(data)
       $('#result').empty()
       if (data.code == 0) {
         if (data.result.length == 0) {
