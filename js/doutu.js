@@ -22,7 +22,7 @@ function addDoutuView() {
     showPop(false)
   })
 
-  let popView = $('<div id="doutuView" class="doutuView"></div>')
+  let popView = $('<div id="doutuView" class="doutuView default"></div>')
   let doutuInputView = $('<div id="doutuInputView"><input id="doutuInput"/><button id="searchBtn" class="green">搜索</button></div>')
   doutuInputView.appendTo(popView)
   $(popView).appendTo($('body'))

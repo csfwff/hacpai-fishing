@@ -95,6 +95,11 @@
   perspective: 1300px;
 }
 
+.doutuView.default{
+  top: 100%;
+  opacity: 0.3;
+}
+
 .doutuView.popShow {
   top: 50%;
   opacity: 1;
