@@ -107,9 +107,31 @@ function search() {
 }
 
 function addToArea(content) {
+
   let area = $(".vditor-textarea")[0]
+
   //area.value = area.value + content
-  area.innerHTML = area.innerHTML + '<span>' + content +'</span><span><br><span style="display:none"></span></span>'
+
+  area.innerHTML = area.innerHTML + '<span>' + content + '</span><span><br><span style="display:none"></span></span>'
+
+}
+
+
+function addToAreaV1(keyword, imgUrl) {
+
+  let area = $(".vditor-textarea")[0]
+
+  //area.value = area.value + content
+  //编辑模式
+  let content = "![" + doutuKeyword + "](https://www.stackoverflow.wiki/getImage.do?src=" + imgUrl + ")"
+  area.innerHTML = area.innerHTML + '<span>' + content + '</span><span><br><span style="display:none"></span></span>'
+  //所见即所得模式
+  let inputArea = $('.vditor-reset.vditor-wysiwyg')[0]
+  let imgString = '<p><img src="https://www.stackoverflow.wiki/getImage.do?src=' + imgUrl + '" alt="' + keyword + '"></p>'
+  let bqImg = $(imgString)
+
+  console.log(bqImg)
+  bqImg.appendTo(inputArea)
 }
 
 
@@ -145,8 +167,11 @@ function sedRequest() {
             img.appendTo(item)
             size.appendTo(item)
             item.click(function () {
-              
-             addToArea("![" + doutuKeyword + "](https://www.stackoverflow.wiki/getImage.do?src=" + e.image_url + ")")
+
+              addToAreaV1(doutuKeyword, e.image_url)
+
+
+              //addToArea("![" + doutuKeyword + "](https://www.stackoverflow.wiki/getImage.do?src=" + e.image_url + ")")
               showPop(false)
             })
             item.appendTo($('#result'))
@@ -192,7 +217,7 @@ function sedRequest() {
 //             img.appendTo(item)
 //             size.appendTo(item)
 //             item.click(function () {
-              
+
 //              addToArea("![" + doutuKeyword + "](" + e.oriPicUrl + ")")
 //               showPop(false)
 //             })
