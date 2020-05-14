@@ -11,7 +11,9 @@ function addDoutuBtn() {
   $(btn).click(function () {
     showPop(true)
   })
-  $(btn).appendTo($('.fn__clear'))
+  $('#chatRoomBtn').before($(btn))
+
+  //$(btn).after()
   addDoutuView()
 }
 
@@ -123,14 +125,14 @@ function addToAreaV1(keyword, imgUrl) {
 
   //area.value = area.value + content
   //编辑模式
-  let content = "![" + doutuKeyword + "](https://www.stackoverflow.wiki/getImage.do?src=" + imgUrl + ")"
+  let content = "![" + doutuKeyword + "](https://www.sszsj.top/sku/getImage?src=" + imgUrl + ")"
   area.innerHTML = area.innerHTML + '<span>' + content + '</span><span><br><span style="display:none"></span></span>'
   //所见即所得模式
   let inputArea = $('.vditor-reset.vditor-wysiwyg')[0]
-  let imgString = '<p><img src="https://www.stackoverflow.wiki/getImage.do?src=' + imgUrl + '" alt="' + keyword + '"></p>'
+  let imgString = '<p><img src="https://www.sszsj.top/sku/getImage?src=' + imgUrl + '" alt="' + keyword + '"></p>'
   let bqImg = $(imgString)
 
-  console.log(bqImg)
+  //console.log(bqImg)
   bqImg.appendTo(inputArea)
 }
 
@@ -162,7 +164,7 @@ function sedRequest() {
             img[0].onload = function () {
               setSize(img, size)
             }
-            img[0].src = e.image_url
+            img[0].src = "https://www.sszsj.top/sku/getImage?src="+e.image_url
 
             img.appendTo(item)
             size.appendTo(item)
